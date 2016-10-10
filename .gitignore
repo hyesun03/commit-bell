@@ -90,3 +90,8 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# Ignore Pycharm .idea
+*.idea/
+
+# Ignore MAC OS .DS_Store
+*.DS_Store
