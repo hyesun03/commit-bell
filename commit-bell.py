@@ -24,7 +24,7 @@ def get_delta_time(last_commit):
     return delta.days
 
 
-@sched.scheduled_job('cron', day_of_week='mon-sun', hour=10,17,22)
+@sched.scheduled_job('cron', day_of_week='mon-sun', hour='10-22/6')
 def main():
     members = (
         ('songjongmoon', 'unity-study', '송종문'),
@@ -50,4 +50,6 @@ def main():
 
 sched.start()
 
+# if __name__ == '__main__':
+#     main()
 
