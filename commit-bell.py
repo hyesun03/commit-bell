@@ -10,7 +10,7 @@ slack = Slacker(token)
 channels = ['#study_unity', '#bot_test']
 
 def post_to_channel(message):
-    slack.chat.post_message(channels[1], message, as_user=True)
+    slack.chat.post_message(channels[0], message, as_user=True)
 
 def get_repo_last_commit_delta_time(owner, repo):
     repo = github3.repository(owner, repo)
