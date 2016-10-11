@@ -5,6 +5,7 @@ import pytz
 import os
 from apscheduler.schedulers.blocking import BlockingScheduler
 
+sched = BlockingScheduler()
 local_tz = pytz.timezone('Asia/Seoul')
 token = os.environ.get('SLACK_BOT_COMMIT_BELL_TOKEN')
 slack = Slacker(token)
@@ -22,6 +23,8 @@ def get_delta_time(last_commit):
     delta = now - last_commit
     return delta.days
 
+
+@sched.scheduled_job('cron', day_of_week='mon-sun', hour=10,17,22)
 def main():
     members = (
         ('songjongmoon', 'unity-study', '송종문'),
@@ -45,6 +48,6 @@ def main():
 
     post_to_channel('\n 안녕 친구들! <!here> 과제 점검하는 커밋벨이에요 호호 \n' + '\n'.join(reports))
 
-if __name__ == '__main__':
-    main()
+sched.start()
+
 
