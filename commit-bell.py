@@ -3,6 +3,7 @@ import github3
 import datetime
 import pytz
 import os
+from apscheduler.schedulers.blocking import BlockingScheduler
 
 local_tz = pytz.timezone('Asia/Seoul')
 token = os.environ.get('SLACK_BOT_COMMIT_BELL_TOKEN')
