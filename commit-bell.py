@@ -8,11 +8,12 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 sched = BlockingScheduler()
 local_tz = pytz.timezone('Asia/Seoul')
 token = os.environ.get('SLACK_BOT_COMMIT_BELL_TOKEN')
+
 slack = Slacker(token)
 channels = ['#study_unity', '#bot_test']
 
 def post_to_channel(message):
-    slack.chat.post_message(channels[0], message, as_user=True)
+    slack.chat.post_message(channels[1], message, as_user=True)
 
 def get_repo_last_commit_delta_time(owner, repo):
     repo = github3.repository(owner, repo)
@@ -24,7 +25,7 @@ def get_delta_time(last_commit):
     return delta.days
 
 
-@sched.scheduled_job('cron', day_of_week='mon-sun', hour='10-22/6')
+@sched.scheduled_job('cron', day_of_week='mon-sun', hour=14)
 def main():
     members = (
         ('songjongmoon', 'unity-study', '송종문'),
@@ -52,4 +53,3 @@ sched.start()
 
 # if __name__ == '__main__':
 #     main()
-
