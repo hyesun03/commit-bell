@@ -13,7 +13,7 @@ slack = Slacker(token)
 channels = ['#study_unity', '#bot_test']
 
 def post_to_channel(message):
-    slack.chat.post_message(channels[1], message, as_user=True)
+    slack.chat.post_message(channels[0], message, as_user=True)
 
 def get_repo_last_commit_delta_time(owner, repo):
     repo = github3.repository(owner, repo)
@@ -28,7 +28,6 @@ def get_delta_time(last_commit):
 @sched.scheduled_job('cron', day_of_week='mon-sun', hour=14)
 def main():
     members = (
-        ('songjongmoon', 'unity-study', '송종문'),
         ('eunsooJeon', 'unity', '전은수'),
         ('net9keep', 'unity', '함태영'),
         ('Oeno', 'tcpBird', '이송열'),
